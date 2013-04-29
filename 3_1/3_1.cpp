@@ -30,12 +30,28 @@ int main(int argc,char* argv[])
 		cout<<st.top(1)<<endl;
 		st.pop(1);
 	}
+	st.push(1,1);
+	st.push(1,3);
+	st.pop(1);
+	st.push(1,2);
+	st.push(1,4);
+	st.push(1,4);
 	st.push(2,1);
 	st.pop(2);
 	st.push(2,3);
 	st.push(2,2);
 	st.push(2,4);
 	st.push(2,4);
+	for(int i=0;i!=10;i++)
+	{
+		st.pop(2);
+	}
+	for(int i=0;i!=300;i++)
+	{
+		st.push(2,i);
+	}
+	st.pop(2);
+	st.push(2,999);
 
 	while(!st.empty(2))
 	{
