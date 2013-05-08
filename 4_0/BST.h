@@ -123,8 +123,7 @@ class BST
 		{
 			node* dn = root;
 			node* cur = NULL;
-			K kt;
-			V vt;
+			node** curp = NULL;
 			while(NULL != dn)
 			{
 				if(dn->key == key)
@@ -142,36 +141,22 @@ class BST
 			{
 				return;
 			}
-			if(root == dn)
+			if(NULL == dn->leftChild || NULL == dn->rightChild)
 			{
-				delete root;
-				root = NULL;
-				tsize = 0;
-				return;
-			}
 
-
-			if(NULL == dn->leftChild)
-			{
-				if(NULL == dn->rightChild)
+				if(root == dn)
 				{
-					if(dn == dn->parent->leftChild)
-					{
-						dn->parent->leftChild = NULL;
-					}else
-					{
-						dn->parent->rightChild = NULL;
-					}
-					delete dn;
+					curp = &root;
 				}else
 				{
-					cur = dn->rightChild;
-					while(NULL != cur->leftChild)
-					{
-						cur = cur->leftChild;
-					}
-					cur->parent->leftChild = NULL;
+					curp = NULL==dn->parent->leftChild?(&dn->parent->rightChild):(&dn->parent->leftChild);
 				}
+				*curp = NULL==dn->leftChild?dn->rightChild:dn->leftChild;
+				if(NULL != *curp)
+				{
+					(*curp)->parent = dn->parent;
+				}
+				delete dn;
 			}else
 			{
 				cur = dn->leftChild;
@@ -179,11 +164,17 @@ class BST
 				{
 					cur = cur->rightChild;
 				}
-				cur->parent->rightChild = NULL;
+				if(cur == dn->leftChild)
+				{
+					dn->leftChild = NULL;
+				}else
+				{
+					cur->parent->rightChild = NULL;
+				}
+				dn->key = cur->key;
+				dn->value = cur->value;
+				delete cur;
 			}
-			dn->key = cur->key;
-			dn->value = cur->value;
-			delete cur;
 			--tsize;
 		}
 		

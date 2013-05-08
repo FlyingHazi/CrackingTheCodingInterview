@@ -13,7 +13,16 @@ int main(int argc,char* argv[])
 	bst.put('e',4);
 	cout<<bst.size()<<endl;
 	cout<<bst.get('b')<<endl;
+	bst.remove('a');
+	cout<<bst.size()<<endl;
+	bst.remove('b');
+	cout<<bst.size()<<endl;
+	bst.remove('c');
+	cout<<bst.size()<<endl;
 	bst.remove('d');
+	cout<<bst.size()<<endl;
+	bst.remove('e');
+	cout<<bst.size()<<endl;
 
 	return 0;
 }
