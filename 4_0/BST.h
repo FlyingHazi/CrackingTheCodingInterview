@@ -1,3 +1,4 @@
+#include <string.h>
 #include <stack>
 #include <iostream>
 using namespace std;
@@ -79,6 +80,10 @@ class BST
 					p = p->rightChild;
 				}
 			}
+			V value;
+			memset(&value,0,sizeof(V));
+			this->put(key,value);
+			return value;
 		}
 		void put(K key,V value)
 		{
