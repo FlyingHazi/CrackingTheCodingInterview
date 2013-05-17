@@ -7,25 +7,25 @@ template <class K,class V>
 class BSTPro:public BST<K,V>
 {
 	private:
-		int minDepth(node* np)
+		int minDepth(typename BST<K,V>::node* np)
 		{
 			if(NULL == np)
 			{
 				return 0;
 			}
-			return 1 + min(this->minDepth(this->leftChild),this->minDepth(this->rightChild));
+			return 1 + min(this->minDepth(np->leftChild),this->minDepth(np->rightChild));
 		}
-		int maxDepth(node* np)
+		int maxDepth(typename BST<K,V>::node* np)
 		{
 			if(NULL == np)
 			{
 				return 0;
 			}
-			return 1 + max(this->maxDepth(this->leftChild),this->maxDepth(this->rightChild));
+			return 1 + max(this->maxDepth(np->leftChild),this->maxDepth(np->rightChild));
 		}
 	public:
 		bool isBalanced()
 		{
-			return this->maxDepth(this->root) - this->minDepth(this->root) > 1;
+			return this->maxDepth(this->root) - this->minDepth(this->root) < 2;
 		}
 };

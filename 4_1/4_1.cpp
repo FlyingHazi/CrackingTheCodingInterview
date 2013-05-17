@@ -25,6 +25,13 @@ int main(int argc,char* argv[])
 	bst.remove('c');
 	bst.remove('d');
 	cout<<bst.get('f')<<endl;
+	if(bst.isBalanced())
+	{
+		cout<<"balanced"<<endl;
+	}else
+	{
+		cout<<"not balanced"<<endl;
+	}
 	bst.remove('e');
 	cout<<bst.size()<<endl;
 	return 0;
