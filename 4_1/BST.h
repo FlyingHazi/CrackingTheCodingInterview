@@ -5,7 +5,7 @@ using namespace std;
 template <class K,class V>
 class BST
 {
-	private:
+	protected:
 		class node
 		{
 			public:
