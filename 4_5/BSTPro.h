@@ -16,17 +16,19 @@ class BSTPro:public BST<K,V>
 				}
 				return q;
 			}
-			if(NULL == p->parent)
+
+
+			while(NULL != p->parent)
 			{
-				return NULL;
+				if(p == p->parent->leftChild)
+				{
+					return p->parent;
+				}else
+				{
+					p = p->parent;
+				}
 			}
-			if(p == p->parent->leftChild)
-			{
-				return p->parent;
-			}else
-			{
-				return successor(p->parent->parent);
-			}
+			return NULL;
 		}
 	public:
 		void findSuccessor(K key)
