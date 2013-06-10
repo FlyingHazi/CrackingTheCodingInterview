@@ -6,45 +6,43 @@ using namespace std;
 
 string nextSmallest(const string &binary)
 {
-	string next = binary;
-	string::iterator i = next.begin();
-	string::iterator j = next.begin();
-	for(;i!=next.end();i++)
+	const int length = binary.size() + 1;
+	char* next = new char[length];
+	strcpy(next,binary.c_str());
+	int i=length,j=length-1;
+	for(;i>=0;--i)
 	{
-		if('1' == *i)
+		if('1' == *(next+i))
 		{
-			j = i;
 			break;
 		}
 	}
-	if(next.end() == i)
+	if(-1 == i)
 	{
-		return next;
+		return binary;
 	}
-	for(;i!=next.end();i++)
+	for(;i>=0;--i)
 	{
-		if('0' == *i)
+		if('0' == *(next+i))
 		{
-			*i = '1';
-			*(--i) = '0';
+			*(next+i) = '1';
+			*(next+(++i)) = '0';
 			break;
 		}
 	}
-	if(next.end() == i || next.begin() == i || next.begin() == j)
+	if(-1 == i || length == ++i)
 	{
-		return next;
+		return string(next);
 	}
-	i--;
-	j--;
-	for(;j!=next.begin();i--,j--)
-	{
-		*i = '0';
-		*j = '1';
-	}
-	*i = '0';
-	*j = '1';
-	return next;
 
+	j = length - 1;
+	while('1' == *(next+i) && '0' == *(next+j) && i>j)
+	{
+		*(next+(i++)) = '0';
+		*(next+(j--)) = '1';
+	}
+	string s = string(next);
+	return s;
 }
 
 string prevBiggest(const string &binary)
@@ -52,39 +50,39 @@ string prevBiggest(const string &binary)
 	const int length = binary.size() + 1;
 	char* prev = new char[length];
 	strcpy(prev,binary.c_str());
-	int i=0,j=0;
-	for(;i!=length;++i)
+	int i=length,j=length-1;
+	for(;i>=0;--i)
 	{
 		if('0' == *(prev+i))
 		{
 			break;
 		}
 	}
-	if(length == i)
+	if(-1 == i)
 	{
 		return binary;
 	}
-	for(;i!=length;++i)
+	for(;i>=0;--i)
 	{
 		if('1' == *(prev+i))
 		{
 			*(prev+i) = '0';
-			*(prev+(--i)) = '1';
+			*(prev+(++i)) = '1';
 			break;
 		}
 	}
-	if(length == i || 0 == i)
+	if(-1 == i || length == ++i)
 	{
-		return binary;
+		return string(prev);
 	}
-	cout<<"i:"<<i<<endl<<"j:"<<j<<endl;
-	--i;
+
 	while('0' == *(prev+i) && '1' == *(prev+j) && i>j)
 	{
-		*(prev+(i--)) = '1';
-		*(prev+(j++)) = '0';
+		*(prev+(i++)) = '1';
+		*(prev+(j--)) = '0';
 	}
-	return string(prev);
+	string s = string(prev);
+	return s;
 }
 
 int main(int argc,char* argv[])
