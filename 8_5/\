@@ -1,0 +1,14 @@
+#include <iostream>
+#include <string>
+#include <set>
+using namespace std;
+
+set<string> *findPar(unsigned int left,unsigned int right)
+{
+
+}
+
+int main(int argc,char* argv[])
+{
+	return 0;
+}
