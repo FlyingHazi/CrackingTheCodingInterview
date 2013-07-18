@@ -3,7 +3,7 @@
 #include <cstdio>
 using namespace std;
 
-void backMerge(char a[],char b[],int al,int bl)
+void backMerge(char a[],const char b[],int al,int bl)
 {
 	unsigned int cur = al + bl;
 	al--;
